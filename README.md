@@ -6,7 +6,7 @@
 
 - [x] Make it deploy (vercel)
 - [x] Scaffold basic ui with mock data
-- [ ] Tidy up build process
+- [x] Tidy up build process (this was a remainder)
 - [ ] Actually set up a database (vercel postgres)
 - [ ] Attach database to UI
 - [ ] Add authentication (w/ clerk)
@@ -26,3 +26,21 @@
 - [ ] "Selecting" images on the gallery page
 - [ ] "infinite scroll"
 - [ ] Folders/albums
+
+
+## Main learnings
+
+### Tidy up build process
+  - Edit `next.config.js` to avoid the build being stopped. We can check this on gh.
+  ```js
+      const config = {
+        typescript: {
+            ignoreBuildErrors: true,
+        },
+        eslint: {
+            ignoreDuringBuilds: true,
+        }
+    };
+    export default config;
+  ```
+- Turn ON turbo on dev (package.jason) `"dev": "next dev --turbo",` -> This speedgs up the dev env.
