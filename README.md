@@ -61,3 +61,4 @@ export default config;
 - `export const dynamic = "force-dynamic";` --> We need to explicitly tell nextjs that the content is supose to be dynamic to avoid the cache from showing outdated data.
   `
 - Select typescript version of the workspace to gurantee that VSC uses the last version and intelligense works better.
+- add a dev branch
