@@ -7,7 +7,9 @@
 - [x] Make it deploy (vercel)
 - [x] Scaffold basic ui with mock data
 - [x] Tidy up build process (this was a remainder)
-- [ ] Actually set up a database (vercel postgres)
+- [x] Set up a database (vercel postgres)
+  - [x] fixe some db errors
+  - [x] Fix <img> warnings
 - [ ] Attach database to UI
 - [ ] Add authentication (w/ clerk)
 - [ ] Add image upload
@@ -19,7 +21,7 @@
 - [ ] Analytics (posthog)
 - [ ] Delete button (w/ Server Actions)
 - [ ] Ratelimiting (upstash)
- 
+
 ### A challenge to the viewer
 
 - [ ] Fix the page layout for images of different resolutions
@@ -27,20 +29,32 @@
 - [ ] "infinite scroll"
 - [ ] Folders/albums
 
-
 ## Main learnings
 
 ### Tidy up build process
-  - Edit `next.config.js` to avoid the build being stopped. We can check this on gh.
-  ```js
-      const config = {
-        typescript: {
-            ignoreBuildErrors: true,
-        },
-        eslint: {
-            ignoreDuringBuilds: true,
-        }
-    };
-    export default config;
-  ```
+
+- Edit `next.config.js` to avoid the build being stopped. We can check this on gh.
+
+```js
+const config = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
+export default config;
+```
+
 - Turn ON turbo on dev (package.jason) `"dev": "next dev --turbo",` -> This speedgs up the dev env.
+
+### Setting up a database (Vercel)
+
+- (!!!) Make sure regions between server and dbs are the same.
+- The name of the DATABASE_URL is important, in our case, we have ti find-and-replace all for POSTGRES_URL to avoid **conflicts with Vercel**.
+- Initiate with the command `pnpm run db:push`
+
+### Extra learnings on the process
+
+- `<Images />` component. If I use <img> I get warnings. If I use external urls, Its a **must** to whitelist urls using [remotePatterns](https://nextjs.org/docs/pages/api-reference/components/image#remotepatterns) in next.config

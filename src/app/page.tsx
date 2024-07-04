@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import { db } from "~/server/db";
+
 
 const mockUrls = [
   'https://utfs.io/f/fed619db-a824-4bda-a060-ab8ebbf7ba04-2dks.avif',
@@ -12,16 +15,25 @@ const mockImages = mockUrls.map((url, index) => ({
   url
 }));
 
-export default function HomePage() {
+export default async function HomePage() {
+  const posts = await db.query.posts.findMany();
+  console.log(posts);
+
   return (
     <main className="">
-      <div className="flex flex-wrap gap-4">{
-        [...mockImages, ...mockImages, ...mockImages, ...mockImages ].map((image) => (
-          <div key={image.id} className="w-48 p-4">
-            <img src={image.url} />
+      <div className="flex flex-wrap gap-4">
+        {posts.map((post) => (
+          <div key={post.id} className="w-48 p-4">
+            <p>{post.name}</p>
+          </div>
+        ))}
+
+        {[...mockImages, ...mockImages, ...mockImages, ...mockImages].map((image, idx) => (
+          <div key={image.id + '-' + idx} className="w-48 p-4">
+            <Image src={image.url} alt={`image about ${idx}`} width={192} height={192} />
           </div>
         ))
-      }
+        }
       </div>
       <h1>Hello! ( Gallery in progress... )</h1>
     </main>
