@@ -1,4 +1,3 @@
-import { desc } from 'drizzle-orm';
 import Image from 'next/image';
 import { db } from "~/server/db";
 
@@ -20,7 +19,6 @@ export default async function HomePage() {
         ))
         }
       </div>
-      <h1>Hello! ( Gallery in progress... )</h1>
     </main>
   );
 }

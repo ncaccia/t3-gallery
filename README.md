@@ -11,7 +11,7 @@
   - [x] fixe some db errors
   - [x] Fix <img> warnings
 - [x] Attach database to UI - Building the schema for the db
-- [ ] Add authentication (w/ clerk)
+- [x] Add authentication (w/ clerk)
 - [ ] Add image upload
   - [ ] "taint" (server-only)
   - [ ] Use Next/Image component
@@ -62,6 +62,21 @@ export default config;
     });
     ```
 
+### Adding authentication
+
+- Open Source and free tools:
+
+  - [next-auth](https://next-auth.js.org/) or
+  - [lucia](https://lucia-auth.com/)
+
+- Paying options:
+  - [Clerk](https://clerk.com/docs/quickstarts/nextjs)
+    - We add a middleware witht the config
+    - Nice component for `<SignedOut>` or `<SignedIn>` which detects if we are actually signedIn and switches depending on the case
+    - !!! add the clerk variables to the vercel setings
+
+---
+
 ### Extra learnings on the process
 
 - `<Images />` component. If I use <img> I get warnings. If I use external urls, Its a **must** to whitelist urls using [remotePatterns](https://nextjs.org/docs/pages/api-reference/components/image#remotepatterns) in next.config
@@ -69,3 +84,4 @@ export default config;
   `
 - Select typescript version of the workspace to gurantee that VSC uses the last version and intelligense works better.
 - add a dev branch
+- Nextjs auto import --> add the `<` before adding the name of the component to the code ex: `<SignedOut` and it will show the intelisense options + import automatically
