@@ -12,8 +12,12 @@
   - [x] Fix <img> warnings
 - [x] Attach database to UI - Building the schema for the db
 - [x] Add authentication (w/ clerk)
+<<<<<<< HEAD
+=======
+  - [ ] Lock homepage access under the auth.
+>>>>>>> dev
 - [ ] Add image upload
-  - [ ] "taint" (server-only)
+  - [ ] "taint" (server-only) ->
   - [ ] Use Next/Image component
 - [ ] Error management (w/ Sentry)
 - [ ] Routing/image page (parallel route)
@@ -74,6 +78,22 @@ export default config;
     - We add a middleware witht the config
     - Nice component for `<SignedOut>` or `<SignedIn>` which detects if we are actually signedIn and switches depending on the case
     - !!! add the clerk variables to the vercel setings
+<<<<<<< HEAD
+=======
+    - Hiding things under the auth is as easy as nesting components under `<SignedOut>` or </`SignedIn>`
+      ```html
+      <main className="">
+        <SignedOut>
+          <div className="h-full w-full text-2xl p-4 text-center">
+            Please Sign In to access the Gallery
+          </div>
+        </SignedOut>
+        <SignedIn>
+          <Gallery />
+        </SignedIn>
+      </main>
+      ```
+>>>>>>> dev
 
 ---
 
