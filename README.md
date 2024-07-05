@@ -10,7 +10,7 @@
 - [x] Set up a database (vercel postgres)
   - [x] fixe some db errors
   - [x] Fix <img> warnings
-- [ ] Attach database to UI
+- [x] Attach database to UI - Building the schema for the db
 - [ ] Add authentication (w/ clerk)
 - [ ] Add image upload
   - [ ] "taint" (server-only)
@@ -54,6 +54,13 @@ export default config;
 - (!!!) Make sure regions between server and dbs are the same.
 - The name of the DATABASE_URL is important, in our case, we have ti find-and-replace all for POSTGRES_URL to avoid **conflicts with Vercel**.
 - Initiate with the command `pnpm run db:push`
+- to query the db: `const images = await db.query.images.findMany();`
+  - By default the order of the query is **ASC** (from the oldest to the newest). We can use drizzel model to re-arrange:
+    ```ts
+    const images = await db.query.images.findMany({
+      orderBy: (model, { desc }) => desc(model.id),
+    });
+    ```
 
 ### Extra learnings on the process
 
