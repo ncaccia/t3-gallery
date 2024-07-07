@@ -13,7 +13,7 @@ async function Gallery() {
     <div className="flex flex-wrap gap-4">
       {images.map((image) => (
         <div key={image.id} className="w-48 p-4 flex flex-col">
-          <img src={image.url} style={{ objectFit: "contain" }} alt={image.name} width={192} height={192} />
+          <img src={image.url} alt={image.name} width={192} height={192} />
           <div>{image.name}</div>
         </div>
       ))
