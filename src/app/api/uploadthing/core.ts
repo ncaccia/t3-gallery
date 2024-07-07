@@ -13,7 +13,7 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
-      console.log("N: Middleware: Checking user authentication...");
+      console.log("Middleware: Checking user authentication...");
       const user = auth();
       // If you throw, the user will not be able to upload
       if (!user.userId) {
