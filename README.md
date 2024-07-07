@@ -9,13 +9,12 @@
 - [x] Tidy up build process (this was a remainder)
 - [x] Set up a database (vercel postgres)
   - [x] fixe some db errors
-  - [x] Fix <img> warnings
 - [x] Attach database to UI - Building the schema for the db
 - [x] Add authentication (w/ clerk)
-  - [ ] Lock homepage access under the auth.
-- [ ] Add image upload
-  - [ ] "taint" (server-only) ->
-  - [ ] Use Next/Image component
+  - [x] Lock homepage access under the auth.
+- [x] Add image upload
+- [x] Use Next/Image component (Fix <img> warnings)
+- [ ] "taint" (server-only) ->
 - [ ] Error management (w/ Sentry)
 - [ ] Routing/image page (parallel route)
   - [ ] Update upload button to be less cringe
@@ -88,6 +87,22 @@ export default config;
         </SignedIn>
       </main>
       ```
+
+### Adding image upload
+
+- We are using the uploadthings library
+  - remember to paste API KEYS on the vercel settings.
+- If we add the endpoint element to our component, we get a list of all the endpoints that exist on our router. `<UploadButton endpoint="imageUploader" />`
+- To connect the upload to the db ->
+  ```ts
+  await db.insert(images).values({
+    name: file.name,
+    url: file.url,
+  });
+  ```
+- After we connect and upload, to avoid having to refresh to render the new img uploaded, we need to ->
+  - call the useRouter from next/navigation (!!! not from next/router)`const router = useRouter();
+  - add the `onClientUploadComplete={() => router.refresh()}` to the UploadButton to rerun the route our user is on, on the server.
 
 ---
 
