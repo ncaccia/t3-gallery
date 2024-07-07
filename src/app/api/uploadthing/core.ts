@@ -13,11 +13,15 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware(async ({ req }) => {
       // This code runs on your server before upload
-      console.log("Checking the userAuth...");
+      console.log("N: Middleware: Checking user authentication...");
       const user = auth();
       // If you throw, the user will not be able to upload
-      if (!user.userId) throw new UploadThingError("Unauthorized");
-      console.log("User Authenticated");
+      if (!user.userId) {
+        console.log("Middleware: Unauthorized user");
+        throw new UploadThingError("Unauthorized");
+      }
+      console.log("Middleware: User authenticated with ID:", user.userId);
+
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
       // const fullUserData = await clerkClient.users.getUser(user.userId);
 
