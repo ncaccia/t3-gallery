@@ -13,7 +13,7 @@
 - [x] Add authentication (w/ clerk)
   - [x] Lock homepage access under the auth.
 - [x] Add image upload
-- [x] Use Next/Image component (Fix <img> warnings)
+- [ ] Use Next/Image component (Fix <img> warnings)
 - [ ] "taint" (server-only) ->
 - [ ] Error management (w/ Sentry)
 - [ ] Routing/image page (parallel route)

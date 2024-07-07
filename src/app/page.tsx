@@ -1,5 +1,5 @@
 import { SignedIn, SignedOut } from '@clerk/nextjs';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { db } from "~/server/db";
 
 export const dynamic = "force-dynamic"; // This force the front to reload when new data is passed.
@@ -13,7 +13,7 @@ async function Gallery() {
     <div className="flex flex-wrap gap-4">
       {images.map((image) => (
         <div key={image.id} className="w-48 p-4 flex flex-col">
-          <Image src={image.url} alt={image.name} width={192} height={192} />
+          <img src={image.url} style={{ objectFit: "contain" }} alt={image.name} width={192} height={192} />
           <div>{image.name}</div>
         </div>
       ))
