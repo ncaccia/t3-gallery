@@ -108,9 +108,17 @@ export default config;
 
 ### Extra learnings on the process
 
+- Vercel block automated/external services -> bypass setting is needed on enviroment settings. This can also affect other services.
+  - [Vercel doc](https://vercel.com/docs/security/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation#using-protection-bypass-for-automation)
+  - [Uploadthings doc](https://docs.uploadthing.com/faq#my-callback-runs-in-development-and-production-but-not-in-vercel-preview-deployments)
+  
 - `<Images />` component. If I use <img> I get warnings. If I use external urls, Its a **must** to whitelist urls using [remotePatterns](https://nextjs.org/docs/pages/api-reference/components/image#remotepatterns) in next.config
+
 - `export const dynamic = "force-dynamic";` --> We need to explicitly tell nextjs that the content is supose to be dynamic to avoid the cache from showing outdated data.
   `
+
 - Select typescript version of the workspace to gurantee that VSC uses the last version and intelligense works better.
+
 - add a dev branch
+
 - Nextjs auto import --> add the `<` before adding the name of the component to the code ex: `<SignedOut` and it will show the intelisense options + import automatically

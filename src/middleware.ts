@@ -3,9 +3,6 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
 export default clerkMiddleware((auth, request) => {
-  if (request.url.startsWith("/api/uploadthing")) {
-    return; // Allow access to /api/uploadthing
-  }
   if (isProtectedRoute(request)) auth().protect();
 });
 
